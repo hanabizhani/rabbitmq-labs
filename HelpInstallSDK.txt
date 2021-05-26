@@ -1,0 +1,21 @@
+SDK Installation
+
+To install the .NET Core SDK, run the following commands:
+ 
+sudo apt-get update; \
+sudo apt-get install -y apt-transport-https && \
+sudo apt-get update && \
+sudo apt-get install -y dotnet-sdk-3.1
+ 
+Runtime installation
+
+The following commands install ASP.NET Core Runtime, which is the most compatible runtime for .NET Core.In your terminal, run the following commands.
+ 
+sudo apt-get update; \
+sudo apt-get install -y apt-transport-https && \
+sudo apt-get update && \
+sudo apt-get install -y aspnetcore-runtime-3.1
+ 
+As an alternative to the ASP.NET Core Runtime, you can install the .NET Core Runtime that does not include ASP.NET Core support: replace aspnetcore-runtime-3.1 in the above command with dotnet-runtime-3.1.
+ 
+sudo apt-get install -y dotnet-runtime-3.1
