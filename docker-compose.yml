@@ -2,9 +2,39 @@ version: '3.7'
 
 services:
 
-  rabbitmq:
+ producer:
+ build:
+    dockerfile: Dockerfile-app
+    container_name: cnt_producer
+    init: true
+     networks:
+      - producer
+    depends_on: 
+      - rabbitmq
+ 
+ consumer1:
+ build:
+    dockerfile: Dockerfile-app
+    container_name: cnt_consumer1
+    init: true
+     networks:
+      - consumer1
+    depends_on: 
+      - rabbitmq
+ 
+ consumer2:
+ build:
+    dockerfile: Dockerfile-app
+    container_name: cnt_consumer2
+    init: true
+     networks:
+      - consumer2
+    depends_on: 
+      - rabbitmq
+
+ rabbitmq:
     image: "rabbitmq:3-management"
-    container_name: "mybroker"
+    container_name: "rabbitmq"
     restart: "always"
     environment:
       RABBITMQ_DEFAULT_USER: "guest"
@@ -12,3 +42,15 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+      networks:
+       - producer
+       - consumer1
+       - consumer2
+
+  networks:
+    producer:
+      driver: rabbitmq
+    consumer1:
+      driver: rabbitmq
+      consumer2:
+      driver: rabbitmq
