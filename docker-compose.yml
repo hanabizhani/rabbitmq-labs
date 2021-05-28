@@ -7,6 +7,8 @@ services:
     dockerfile: Dockerfile-app
     container_name: cnt_producer
     init: true
+    args:
+      - appname = LogProducer
      networks:
       - producer
     depends_on: 
@@ -17,6 +19,8 @@ services:
     dockerfile: Dockerfile-app
     container_name: cnt_consumer1
     init: true
+    args:
+      - appname = LogConsumer
      networks:
       - consumer1
     depends_on: 
@@ -27,6 +31,8 @@ services:
     dockerfile: Dockerfile-app
     container_name: cnt_consumer2
     init: true
+    args:
+      - appname = LogConsumer
      networks:
       - consumer2
     depends_on: 
